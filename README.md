@@ -48,7 +48,70 @@ client.list_assets
 ```
 
 ```json
+{
+  "data": [
+    {
+      "tracks": [
+        {
+          "type": "audio",
+          "max_channels": 2,
+          "max_channel_layout": "stereo",
+          "id": "Zhab3kaKDKBaClnVugrMpgEveBwzwqPm",
+          "duration": 442.066
+        },
+        {
+          "type": "video",
+          "max_width": 1920,
+          "max_height": 1080,
+          "max_frame_rate": 30,
+          "id": "zlj23ndkan9alOFKnRSUDRMdqO5lhSsEw",
+          "duration": 442.066667
+        }
+      ],
+      "status": "ready",
+      "playback_ids": [
+        ...
+      ]
+      "max_stored_resolution": "HD",
+      "max_stored_frame_rate": 30,
+      "id": "mfUQ0032814ynnzldkkaann3l901",
+      "duration": 442.1,
+      "created_at": "1534696086",
+      "aspect_ratio": "16:9"
+    }
+  ]
+}
+```
 
+### Creating a New Asset
+
+```ruby
+client.post_asset(url_to_video)
+```
+
+This will create the asset and return the initial data for it. The asset will
+still be processing, but you can save the `id` in this response.
+
+```json
+{
+  "data": {
+    "status": "preparing",
+    "id": "...",
+    "created_at": "1534782074"
+  }
+}
+```
+
+You can also specify a playback policy at the same time:
+
+```ruby
+client.post_asset(url_to_video, playback_policy: 'signed')
+```
+
+Or use Per-title Encoding:
+
+```ruby
+client.post_asset(url_to_video, per_title_encode: true)
 ```
 
 
@@ -60,7 +123,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/mux-ruby.
+Bug reports and pull requests are welcome on GitHub at https://github.com/subdigital/mux-ruby.
 
 ## License
 
