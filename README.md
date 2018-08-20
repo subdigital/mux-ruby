@@ -71,10 +71,10 @@ client.list_assets
       "status": "ready",
       "playback_ids": [
         ...
-      ]
+      ],
       "max_stored_resolution": "HD",
       "max_stored_frame_rate": 30,
-      "id": "mfUQ0032814ynnzldkkaann3l901",
+      "id": "m4921kfUQ0032814ynnzldkkaann3l901",
       "duration": 442.1,
       "created_at": "1534696086",
       "aspect_ratio": "16:9"
