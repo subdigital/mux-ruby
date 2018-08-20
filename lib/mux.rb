@@ -43,6 +43,15 @@ class Mux
   def asset(asset_id)
     get "/video/v1/assets/##{asset_id}"
   end
+
+  def create_playback_id(asset_id, policy)
+    valid_policies = %w{signed public}
+    raise "Unsupported policy: #{policy}" unless valid_policies.include?(policy)
+    post "/video/v1/assets/#{asset_id}/playback-ids", {
+      policy: policy
+    }
+  end
+
   private
 
   def get(path, params = {})
