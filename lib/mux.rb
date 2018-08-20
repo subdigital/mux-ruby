@@ -17,14 +17,45 @@ class Mux
     self.debug_enabled = true
   end
 
+  # List mux assets. Returns a JSON response for each asset,
+  # including metadata, and playback ids.
   def list_assets
     get('/video/v1/assets')
+  end
+
+  # Posts a new asset. Response will include the asset id
+  # and any playback ids initially created.
+  # Params:
+  #   url             -  A publicly accessible URL to the asset for mux to fetch.
+  #   playback_policy -  Create a playback policy with the provided value. Valid
+  #                      values are 'signed', and 'public'. If omitted, no
+  #                      playback ids will be created.
+  #   per_title_encode - Allows the server to provide optimal encoding for this
+  #                      asset, but requires additional time to process. `true`
+  #                      or `false`.
+  def post_asset(url, params = {})
+    post '/video/v1/assets', {
+      input: url
+    }.merge(params)
   end
 
   private
 
   def get(path, params = {})
     response = connection(path).get(query: params)
+    if [200, 201].include(response.status)
+      JSON.parse(response.body)
+    else
+      raise Mux::Error.new(response.status, response.body)
+    end
+  end
+
+  def post(path, params)
+    response = connection(path).post(
+      body: params.to_json,
+      headers: {
+        'Content-Type': 'application/json'
+      })
     if response.status == 200
       JSON.parse(response.body)
     else
@@ -36,7 +67,7 @@ class Mux
     Excon.new(MUX_BASE_URL + path,
       user: access_token_id,
       password: secret_key,
-      debug_requests: debug_enabled,
-      debug_responses: debug_enabled)
+      debug_request: debug_enabled,
+      debug_response: debug_enabled)
   end
 end
