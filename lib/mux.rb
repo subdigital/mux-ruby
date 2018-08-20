@@ -43,7 +43,7 @@ class Mux
 
   def get(path, params = {})
     response = connection(path).get(query: params)
-    if [200, 201].include(response.status)
+    if response.status == 200
       JSON.parse(response.body)
     else
       raise Mux::Error.new(response.status, response.body)
@@ -56,7 +56,7 @@ class Mux
       headers: {
         'Content-Type': 'application/json'
       })
-    if response.status == 200
+    if [200, 201].include?(response.status)
       JSON.parse(response.body)
     else
       raise Mux::Error.new(response.status, response.body)
