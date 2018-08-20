@@ -39,6 +39,10 @@ class Mux
     }.merge(params)
   end
 
+  # Returns a mux asset, including status.
+  def asset(asset_id)
+    get "/video/v1/assets/##{asset_id}"
+  end
   private
 
   def get(path, params = {})
