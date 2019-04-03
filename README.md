@@ -1,3 +1,5 @@
+> An officially supported library is now available at [muxinc/mux-ruby](https://github.com/muxinc/mux-ruby). I'd recommend using that.
+
 # Mux
 
 A ruby client for the mux.com api.
