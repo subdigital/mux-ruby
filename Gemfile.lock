@@ -3,13 +3,13 @@ PATH
   specs:
     mux-ruby (0.1.0)
       excon (~> 0.58)
-      json (~> 2.0.4)
+      json (>= 2.0.4)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    excon (0.62.0)
-    json (2.0.4)
+    excon (0.73.0)
+    json (2.3.0)
     rake (10.5.0)
 
 PLATFORMS
