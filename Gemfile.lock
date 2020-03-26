@@ -2,15 +2,15 @@ PATH
   remote: .
   specs:
     mux-ruby (0.1.0)
-      excon (~> 0.58)
-      json (>= 2.0.4)
+      excon (>= 0.71.0)
+      json (>= 2.3.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
     excon (0.73.0)
     json (2.3.0)
-    rake (10.5.0)
+    rake (13.0.1)
 
 PLATFORMS
   ruby
@@ -18,7 +18,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.16)
   mux-ruby!
-  rake (~> 10.0)
+  rake (>= 12.3.3)
 
 BUNDLED WITH
    1.17.3
