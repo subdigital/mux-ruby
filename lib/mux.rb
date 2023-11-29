@@ -35,6 +35,24 @@ class Mux
     }.merge(params)
   end
 
+  # Adds a track to an existing asset
+  # See https://docs.mux.com/api-reference#video/operation/create-asset-track
+  # 
+  # example params:
+  #   {
+  #     "url": "https://example.com/myVideo_en.srt",
+  #     "type": "text",
+  #     "text_type": "subtitles",
+  #     "language_code": "en-US",
+  #     "name": "English",
+  #     "closed_captions": true,
+  #     "passthrough": "English"
+  #   }
+  def create_asset_track(asset_id, params)
+    post "/video/v1/assets/#{asset_id}/tracks", params
+  end
+
+
   # Returns a mux asset, including status.
   def asset(asset_id)
     get "/video/v1/assets/##{asset_id}"
