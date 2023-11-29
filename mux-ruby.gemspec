@@ -22,9 +22,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "excon", ">= 0.71.0"
-  spec.add_dependency "json", ">= 2.3.0"
+  spec.add_dependency "excon", ">= 0.71"
+  spec.add_dependency "json", ">= 2.3"
 
-  spec.add_development_dependency "bundler", "~> 1.16"
+  spec.add_development_dependency "bundler", ">= 2.2.33"
   spec.add_development_dependency "rake", ">= 12.3.3"
 end
